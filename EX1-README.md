@@ -83,3 +83,29 @@ This line subtracts 29 from the 42 already in the register (ebx). The subtractio
 ```
 
  We get 13.
+
+ ## Operations
+
+ **`operator [operands, ...]`**
+
+ This is the general syntax of operations in assembly. The operation / operand is a 3 or 4 letter mnemonic on the left. This is followed by some operands separated by comma.
+
+ perform | code | note
+ -----|------|---
+Move / assign | mov
+Addition  | add | in place
+Subtract | sub  | in place
+Multiply | mul  | always applied to eax register
+Divide | div   | always applied to eax register
+Interrupt | int
+
+```
+    mov ebx, 123 ; ebx = 123
+    mov eax, ebx ; eax = ebx
+    add ebx, ecx ; ebx += ecx
+    sub ebx, edx ; ebx -= edx
+    mul ebx      ; eax *= ebx
+    div edx      ; eax /= edx
+```
+
+In assembly comments start with `;`
