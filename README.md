@@ -84,4 +84,8 @@ As I will be using VSCode, I will be isntalling this as well.
 
 ## Project 1
 
-See: EX1-README.md
+See:
+    * EX1-README.md
+    * EX2-README.md
+
+
