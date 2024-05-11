@@ -63,5 +63,23 @@ To run it use the following command
  
  We get 42. In this case this means that the program ran successfully and was able to set the exit status.
 
- 
- 
+
+ ## Subtracting a number
+
+ Add the following line after setting ebx
+
+ ```
+    sub ebx, 29
+```
+
+This line subtracts 29 from the 42 already in the register (ebx). The subtraction is done in place. So it alters the value stored in ebx. The exit status should now be 13.
+
+
+```
+    nasm -f elf32 ex1.asm -o ex1.o
+    ld -m elf_i386 ex1.o -o ex1
+    ./ex1
+    echo $?
+```
+
+ We get 13.
