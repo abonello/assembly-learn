@@ -109,3 +109,7 @@ Unlike a register, we cannot change the instruction pointer by using the normal 
 See:
     * EX3-README.md
     * EX4-README.md
+
+## Project 5 - Memory Access and Stack Operations
+
+We saw one example of addressing memory in the hello world program (ex2).
