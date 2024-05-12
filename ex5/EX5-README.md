@@ -100,6 +100,166 @@ If we want to encode a larger integer. For this we can use a `dw` data type. The
 ## The Stack
 LIFO data structure. The Stack is just an array with its pointer pointing at the top of the array. We also have random access to this memory, thus we can read and write at arbitrary locations within it.
 
+Visual representation of the stack
+
+ESP = 28
+
+[00] 0  
+[04] 0  
+[08] 0  
+[12] 0  
+[16] 0  
+[20] 0  
+[24] 0  
+**[28] 0**
+
+ESP is the our stack pointer. It is the register that holds the current location of the top of the stack. In our visual representation we have the memory addresses on the left and the value stored at that address on the right.
+
+Notice that the addresses count by 4. This is because we are going to push 4 byte integers (32 bit architecture).
+
+Notice that the stack pointer starts at the highest memory address. This is how x86 machines work. The stack pointer starts at a higher address in memory and moves down with each push and back up with pops.
+
+When we push a value, this causes the stack pointer to decrease by 4. Then the value being pushed is written to the new location in memory.
+
+```
+push 1234
 
 
+ESP = 24
+
+...
+[20] 0  
+[24] 1234   <--
+[28] 0
+```
+
+```
+push 1234
+push 8765
+
+
+ESP = 20
+
+...
+[16] 0 
+[20] 8765   <--
+[24] 1234 
+[28] 0
+```
+
+```
+push 1234
+push 8765
+push 246
+
+
+ESP = 16
+
+[00] 0  
+[04] 0  
+[08] 0  
+[12] 0 
+[16] 246    <--
+[20] 8765 
+[24] 1234 
+[28] 0
+```
+
+```
+push 1234
+push 8765
+push 246
+push 357
+
+
+ESP = 12
+
+[00] 0  
+[04] 0  
+[08] 0  
+[12] 357    <--
+[16] 246
+[20] 8765 
+[24] 1234 
+[28] 0
+```
+
+Instead of using the push operations, we can work with the ESP register directly.
+That last push can be re-written as follows:
+
+```
+push 1234
+push 8765
+push 246
+sub esp, 4
+mov [esp], dword 357
+
+
+ESP = 12
+
+[00] 0  
+[04] 0  
+[08] 0  
+[12] 357    <--
+[16] 246
+[20] 8765 
+[24] 1234 
+[28] 0
+```
+
+So this says:  
+subtract 4 from ESP   
+Then, move 357 into the location that ESP points to.
+
+The `dword` keyword tells NASM that we are moving 4 bytes of data into this memory location.
+
+Back to using push because it is eaier to read. Now we will explore the pop operation:
+
+
+```
+push 1234
+push 8765
+push 246
+push 357
+pop eax
+
+
+ESP = 16
+
+[00] 0  
+[04] 0  
+[08] 0  
+[12] 357
+[16] 246    <--
+[20] 8765 
+[24] 1234 
+[28] 0
+```
+
+The pointer is currently at address 12, the top of the stack. The pop operation moves the value at this address to the EAX register. EAX is now 357.
+
+Then it adds 4 to ESP so the stack pointer is now 16. This is the new top of the stack. The value stored at address 12 is not actually deleted, erased or removed. It is just ignored and can be overwritten with a new push operation.
+
+We can implement this pop operation with a move and an addition.
+
+```
+push 1234
+push 8765
+push 246
+push 357
+mov eax, dword [esp]
+add esp, 4
+
+
+ESP = 16
+
+[00] 0  
+[04] 0  
+[08] 0  
+[12] 357
+[16] 246    <--
+[20] 8765 
+[24] 1234 
+[28] 0
+```
 
