@@ -82,10 +82,28 @@ As I will be using VSCode, I will be isntalling this as well.
 * VS Code is now installed.
 * Build a project at your desired location.
 
-## Project 1
+## Project 1 and 2
 
 See:
     * EX1-README.md
     * EX2-README.md
+
+## Program Control flow
+
+Assembly lacks the usual constructs like `iteration` `conditions` and `function calls`.
+Instead, the programmer has to build this kind of behaviour using `jump` instructions.
+
+### The Instruction Pointer
+This is an internal pointer in the processor often labelled as `EIP`. As the program runs instruction after another,
+this pointer holds the location for the machine code that the processor is executing.
+
+This means that the processor can jump around to different locations in the code by altering this pointer.
+Unlike a register, we cannot change the instruction pointer by using the normal `move`, `add` and `subtract` operations. Instead, the instruction pointer is changed by using the `jump` operation.
+
+    In brief
+    * EIP
+    * Location of execution
+    * Not like a register
+    * Changed by jump ops
 
 
