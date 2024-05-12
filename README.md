@@ -82,13 +82,13 @@ As I will be using VSCode, I will be isntalling this as well.
 * VS Code is now installed.
 * Build a project at your desired location.
 
-## Project 1 and 2
+## Project 1 and 2 - Fundamentals
 
 See:
     * EX1-README.md
     * EX2-README.md
 
-## Program Control flow
+## Pojects 3 and 4 - Program Control flow
 
 Assembly lacks the usual constructs like `iteration` `conditions` and `function calls`.
 Instead, the programmer has to build this kind of behaviour using `jump` instructions.
@@ -106,4 +106,6 @@ Unlike a register, we cannot change the instruction pointer by using the normal 
     * Not like a register
     * Changed by jump ops
 
-
+See:
+    * EX3-README.md
+    * EX4-README.md
