@@ -1,5 +1,5 @@
 # Learn Assembly Language (x86)
-following youtube tutorial by Davy Wybiral (thanks)
+following youtube tutorials by Davy Wybiral (thanks) and OliveStem (thanks)
 
 ## What is Assembly Langauge?
 Assembly is a category of programming language (not a single language itself). This term applies to languages that provide almost no abstraction over the native instruction set (binary / machine code) of the processor. Assembly language is a *"human-readable"* form of machine code.
@@ -113,3 +113,83 @@ See:
 ## Project 5 - Memory Access and Stack Operations
 
 We saw one example of addressing memory in the hello world program (ex2).
+
+
+## Debugging
+
+Using the `gdb` debugger. Debugging a file called `test`.
+
+The following starts the debugging session
+
+```
+gdb test
+```
+
+start assembly layout
+```
+layout asm
+```
+
+create a breakpoint at `_start`
+
+```
+break _start
+```
+
+run the program in debug mode
+
+```
+run
+```
+
+step through instructions one by one
+
+```
+stepi
+```
+check what is stored in register
+
+```
+info registers ebx
+```
+
+Display what is stored at a particular pointer for register
+```
+x/x $esp
+```
+
+To display the string stored in a register
+
+```
+x/s $ecx
+```
+
+I get "Hey!\001"
+`\001` is the ASCII control character SOH (Start of Header). It's a non-printable character, and its presence in the string could be due to a variety of reasons, depending on the context of your program.
+
+```
+x/x $ecx
+x/x $ecx+1
+x/x $ecx+2
+x/x $ecx+3
+```
+To quit gdb
+```
+quit
+```
+
+### what does the x/x and x/s stand for?
+
+In GDB (GNU Debugger), the x command is used to examine memory. The syntax of the command is `x/NFU ADDRESS`, where:
+
+* `N` is an optional parameter that specifies the number of units to display.
+* `F` is an optional parameter that specifies the format in which to display the units.
+* `U` is an optional parameter that specifies the unit size.
+* `ADDRESS` is the memory address to examine.  
+
+The `F` parameter can take several values, including:
+
+* `x` to display in hexadecimal.
+* `s` to display as a null-terminated string.
+
+So, `x/x $ecx` means "examine the memory at the address in the `ecx` register, displaying the result in **hexadecimal**", and `x/s $ecx` means "examine the memory at the address in the `ecx` register, displaying the result as a **null-terminated string**".
